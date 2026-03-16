@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Webex Contact Center — Zero to Hero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+
+    body {
+      background: #030C14;
+      color: #C4E4F5;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Subtle radial glow behind the hero */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 40%, rgba(0,188,235,0.08) 0%, transparent 70%);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      height: 64px;
+      border-bottom: 1px solid rgba(0,188,235,0.12);
+      background: rgba(3,12,20,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    /* Webex logo mark */
+    .nav-brand svg { width: 34px; height: 34px; flex-shrink: 0; }
+
+    .nav-brand-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+    .nav-brand-text span { color: #00BCEB; }
+
+    .nav-sep {
+      width: 1px;
+      height: 26px;
+      background: rgba(0,188,235,0.2);
+      margin: 0 18px;
+    }
+
+    .nav-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      color: #4E7A96;
+      text-transform: uppercase;
+    }
+
+    .nav-badge {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(0,188,235,0.08);
+      border: 1px solid rgba(0,188,235,0.18);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 11px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      color: #00BCEB;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #00D4B4;
+      box-shadow: 0 0 8px #00D4B4;
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 32px 100px;
+      gap: 0;
+    }
+
+    /* Big Webex logo */
+    .hero-logo {
+      width: 72px; height: 72px;
+      margin-bottom: 36px;
+      filter: drop-shadow(0 0 32px rgba(0,188,235,0.55));
+      animation: fadeUp .5s ease both;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(0,188,235,0.2);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #00BCEB;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      animation: fadeUp .5s ease .06s both;
+    }
+    .tag-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #00D4B4;
+      box-shadow: 0 0 6px #00D4B4;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      line-height: 0.88;
+      letter-spacing: 2px;
+      margin-bottom: 28px;
+      animation: fadeUp .5s ease .1s both;
+    }
+    .hero-title .t1 {
+      display: block;
+      font-size: clamp(72px, 13vw, 148px);
+      color: #ffffff;
+    }
+    .hero-title .t2 {
+      display: block;
+      font-size: clamp(48px, 9vw, 100px);
+      -webkit-text-stroke: 2px #00BCEB;
+      color: transparent;
+    }
+    .hero-title .t3 {
+      display: block;
+      font-size: clamp(60px, 10vw, 120px);
+      color: #00BCEB;
+    }
+
+    .hero-sub {
+      font-size: clamp(14px, 1.8vw, 17px);
+      font-weight: 300;
+      color: #4E7A96;
+      max-width: 580px;
+      line-height: 1.75;
+      animation: fadeUp .5s ease .18s both;
+    }
+    .hero-sub strong { color: #C4E4F5; font-weight: 600; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid rgba(0,188,235,0.08);
+      font-size: 11px;
+      color: #2A4D63;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 560px) {
+      nav { padding: 0 20px; }
+      .nav-sep, .nav-label { display: none; }
+      .hero { padding: 60px 20px 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-brand" href="#">
+      <!-- Webex logo mark -->
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="200" height="200" rx="44" fill="#00BCEB"/>
+        <path d="M100 36C65.0 36 36 65.0 36 100C36 135.0 65.0 164 100 164C135.0 164 164 135.0 164 100C164 65.0 135.0 36 100 36ZM100 140C78.5 140 61 122.5 61 101C61 79.5 78.5 62 100 62C121.5 62 139 79.5 139 101C139 122.5 121.5 140 100 140Z" fill="white"/>
+        <circle cx="100" cy="101" r="22" fill="white"/>
+      </svg>
+      <span class="nav-brand-text">WEBEX <span>CC</span></span>
+    </a>
+    <div class="nav-sep"></div>
+    <span class="nav-label">Zero to Hero</span>
+    <div class="nav-badge">
+      <span class="badge-dot"></span>
+      GitHub Pages · Live
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <!-- Webex logo large -->
+    <svg class="hero-logo" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="200" height="200" rx="44" fill="#00BCEB"/>
+      <path d="M100 36C65.0 36 36 65.0 36 100C36 135.0 65.0 164 100 164C135.0 164 164 135.0 164 100C164 65.0 135.0 36 100 36ZM100 140C78.5 140 61 122.5 61 101C61 79.5 78.5 62 100 62C121.5 62 139 79.5 139 101C139 122.5 121.5 140 100 140Z" fill="white"/>
+      <circle cx="100" cy="101" r="22" fill="white"/>
+    </svg>
+
+    <div class="hero-tag">
+      <span class="tag-dot"></span>
+      Cisco Partner Bootcamp 2026
+    </div>
+
+    <h1 class="hero-title">
+      <span class="t1">WEBEX</span>
+      <span class="t2">CONTACT CENTER</span>
+      <span class="t3">ZERO TO HERO</span>
+    </h1>
+
+    <p class="hero-sub">
+      Master <strong>Webex Contact Center</strong> from the ground up — flows, digital
+      channels, AI agents, and live customer chat. Hands-on labs. Real tenant. Production skills.
+    </p>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>© 2026 Cisco Systems — Partner Enablement Bootcamp</footer>
+
+
+  <!-- ============================================================
+       WEBEX CONNECT LIVECHAT WIDGET
+       ─────────────────────────────────────────────────────────────
+       Paste your embed snippet from Webex Connect here:
+       Assets → Apps → [your LiveChat asset] → Embed Code
+
+       BEFORE IT WORKS — add your GitHub Pages domain to the
+       Allowed Sites list in Webex Engage:
+       Control Hub → Webex Engage → Assets → [asset] → Allowed Sites
+       Add:  your-username.github.io  (no https://, no slash)
+       ============================================================ -->
+
+
+
+  <!-- PASTE WIDGET SNIPPET HERE -->
+
+
+</body>
+</html>
